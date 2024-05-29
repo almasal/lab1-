@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>3D Bar Chart VR Example </title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+      body { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Define the 3D bar chart -->
+      <a-entity id="bar-chart" position="0 1.6 -5"></a-entity>
+      
+      <!-- Add a simple camera -->
+      <a-entity camera position="0 1.6 0"></a-entity>
+    </a-scene>
+
+    <script>
+      // Sample data
+      const data = [
+        { x: 0, y: 5, z: 0 },
+        { x: 1, y: 3, z: 0 },
+        { x: 2, y: 8, z: 0 },
+        { x: 3, y: 2, z: 0 }
+      ];
+
+      // Create 3D bars
+      const chart = d3.select('#bar-chart');
+      data.forEach(d => {
+        chart.append('a-box')
+          .attr('position', `${d.x} ${d.y / 2} ${d.z}`)
+          .attr('height', d.y)
+          .attr('width', 0.9)
+          .attr('depth', 0.9)
+          .attr('color', 'blue');
+      });
+    </script>
+  </body>
+</html>
